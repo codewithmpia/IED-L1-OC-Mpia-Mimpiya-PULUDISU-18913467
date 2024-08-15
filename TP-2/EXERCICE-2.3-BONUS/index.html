@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Captures écran de 11 sites web</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+</head>
+<body class="bg-gray-100 text-base p-6">
+    <div class="max-w-[900px] text-center mx-auto mb-12">
+      <h1 class="text-4xl font-bold text-blue-600">Captures écran des Sites Web</h1>
+      <p>Ce petit programme codé pour exercice 2.3 (Bonus)</p>
+    </div>
+    
+    <div id="screenshots-container" class="max-w-[900px] grid grid-cols-2 md:grid-cols-3 gap-6 mx-auto"></div>
+    <py-script>
+        from js import document
+
+        screenshots = [
+            {"url": "https://www.wikipedia.org", "title": "Wikipedia", "file": "screenshots/Wikipedia.png"},
+            {"url": "https://www.w3schools.com", "title": "W3Schools", "file": "screenshots/W3Schools_Online_Web_Tutorials.png"},
+            {"url": "https://developer.mozilla.org/fr", "title": "MDN", "file": "screenshots/MDN_Web_Docs.png"},
+            {"url": "https://www.python.org", "title": "Python", "file": "screenshots/Welcome_to_Python.org.png"},
+            {"url": "https://flask.palletsprojects.com/en/3.0.x", "title": "Flask", "file": "screenshots/Welcome_to_Flask_—_Flask_Documentation_(3.0.x).png"},
+            {"url": "https://www.djangoproject.com", "title": "Django", "file": "screenshots/The_web_framework_for_perfectionists_with_deadlines__Django.png"},
+            {"url": "https://vuejs.org", "title": "Vue", "file": "screenshots/Vue.js_-_The_Progressive_JavaScript_Framework__Vue.js.png"},
+            {"url": "https://tailwindcss.com", "title": "Tailwindcss", "file": "screenshots/Tailwind_CSS_-_Rapidly_build_modern_websites_without_ever_leaving_your_HTML..png"},
+            {"url": "https://getbootstrap.com", "title": "Bootstrap", "file": "screenshots/Bootstrap_·_The_most_popular_HTML,_CSS,_and_JS_library_in_the_world..png"},
+            {"url": "https://www.fun-mooc.fr/fr", "title": "Fun Mooc", "file": "screenshots/FUN_-_Se_former_en_liberté_-_FUN_MOOC.png"},
+            {"url": "https://grafikart.fr", "title": "grafikart", "file": "screenshots/Tutoriels_et_Formations_vidéos_sur_le_développement_web__Grafikart.png"}
+        ]
+
+        container = document.getElementById("screenshots-container")
+        
+        for item in screenshots:
+            # Créer le lien
+            a = document.createElement("a")
+            a.href = item["url"]
+            # Ouvrir le lien dans un nouvel onglet
+            a.target = "_blank"
+            a.className = "w-full flex flex-col gap-4 bg-white rounded-lg shadow-lg p-6 border border-solid border-blue-100 hover:bg-gray-50 hover:border-blue-400"
+            
+            # Créer image
+            img = document.createElement("img")
+            img.src = item["file"]
+            # Largeur de image
+            img.style.width = "600px"
+            img.alt = item["title"]
+            img.className = "h-auto max-w-full rounded-lg"
+            
+            # Ajouter l'image au lien
+            a.appendChild(img)
+            
+            # Créer le titre
+            title_paragraph = document.createElement("p")
+            title_paragraph.textContent = item["title"]
+            title_paragraph.className = "text-lg text-gray-600 tex-center font-semibold"
+            a.title = item["title"]
+
+            # Ajouter les éléments au container
+            a.appendChild(title_paragraph)
+            container.appendChild(a)
+    </py-script>
+</body>
+</html>
